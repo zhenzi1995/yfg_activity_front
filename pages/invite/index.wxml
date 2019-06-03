@@ -1,0 +1,71 @@
+<view class="container">
+  <view class="content-bg">
+    <image src="https://img.aworld.cn/duanwubanner.png"></image>
+  </view>
+  <view class="header">
+    <view class="time">
+      <view class="time-top">
+        倒计时
+      </view>
+      <block wx:if="{{countDownDay}}">
+        <image src="https://img.aworld.cn/img_time.png">
+          <text>{{countDownDay<10?('0'+countDownDay):countDownDay}}</text>
+        </image>
+        <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      </block>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownHour<10?('0'+countDownHour):countDownHour}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownMinute<10?('0'+countDownMinute):countDownMinute}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownSecond<10?('0'+countDownSecond):countDownSecond}}</text>
+      </image>
+    </view>
+    <view class="head">
+      <image src="{{headimg}}"></image>
+    </view>
+    <view class="namelist" wx:if="{{teamData.title}}">{{teamData.title}}</view>
+    <block wx:else>
+      <view class="name" wx:if="{{teamData.isMe}}">
+      <view class="inputwidth">
+        <text>队名：</text>
+        <input placeholder="请输入你的队名" bindinput ="inputTitle" />
+        
+        </view>
+        <button bindtap='surename' class="surebtn" bindtap="surename">确定</button>
+      </view>
+    </block>
+  </view>
+  <view class="incite-img">
+    <view wx:for="{{teamData.users}}" wx:key="index">
+      <image src="{{item.headimgurl}}"></image>
+    </view>
+    <view wx:for="{{5-teamData.users.length}}" wx:key="{{index}}">
+      <image></image>
+    </view>
+  </view>
+  <view class="incite-info">
+    <view>龙舟赛需要5人组成一支队伍</view>
+    (
+    <text>{{teamData.users.length || 0}}</text>/5)
+  </view>
+  <view class="btn">
+    <button type="button" open-type="share">
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>邀请组队</text>
+    </button>
+    
+    <button type="button" bindtap='createPoster'>
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>分享活动</text>
+    </button>
+    <button type="button"  bindtap='black'>
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>返回首页</text>
+    </button>
+  </view>
+</view>

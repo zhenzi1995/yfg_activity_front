@@ -1,0 +1,4 @@
+<view class="container">
+ <image src="https://img.aworld.cn/xiaochengxuerweima.png" ></image>
+ <button class='btn'  bindtap='postSave'>保存到本地相册</button>
+</view>

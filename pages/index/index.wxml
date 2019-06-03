@@ -1,0 +1,200 @@
+<view class="container">
+  <view class="content-bg">
+    <!-- <image src="../../images/banner.png"></image> -->
+    <image src="https://img.aworld.cn/duanwubanner.png"></image>
+  </view>
+  <view class="header">
+    <image class="header-logo" src="https://img.aworld.cn/img_yifanggou.png"></image>
+    <image class="header-title" src="https://img.aworld.cn/img_font.png"></image>
+    <view class="time">
+      <view>
+        距离
+        <text class="timenum">{{countDownTime}}</text>场（
+        <text class="scene">第{{huodongData.changci <1?('0'+huodongData.changci):huodongData.changci}}场</text>/15场）开始还有
+      </view>
+      <block wx:if="{{countDownDay}}">
+        <image src="https://img.aworld.cn/img_time.png">
+          <text>{{countDownDay<10?('0'+countDownDay):countDownDay}}</text>
+        </image>
+        <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      </block>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownHour<10?('0'+countDownHour):countDownHour}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownMinute<10?('0'+countDownMinute):countDownMinute}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownSecond<10?('0'+countDownSecond):countDownSecond}}</text>
+      </image>
+    </view>
+    <image class="header-ship" src="https://img.aworld.cn/img_dragon_boat.png"></image>
+    <view class="person">
+      【总共
+      <text>{{randSum.sum}}</text>人围观】
+    </view>
+  </view>
+  <view class="rule">
+    <image class="rule-bg" src="https://img.aworld.cn/img_activity_reward.png"></image>
+    <view class="rule-content">
+      <view class="rule-title">
+        <image src="https://img.aworld.cn/icon_headline.png"></image>
+        <text>活动奖励</text>
+      </view>
+      <view class="rule-info">
+        <view>
+          <text class="rule-num">1</text>
+          <text class="rule-font">6.4-6.6从下午14:00到18:00，每小时一场，共<text class="num">15</text>场。</text>
+        </view>
+        <view>
+          <text class="rule-num">2</text>
+          <text class="rule-font">每场获胜队获得<text class="num">1000</text>奖金</text>
+        </view>
+        <view>
+          <text class="rule-num">3</text>
+          <text class="rule-font">第2到3名获得<text class="num">100</text>元奖金</text>
+        </view>
+        <view>
+          <text class="rule-num">4</text>
+          <text class="rule-font">第4到20名获得<text class="num">10</text>元奖金</text>
+        </view>
+        <view>
+          <text class="rule-num">5</text>
+          <text class="rule-font">参与的新用户都获得新人礼包</text>
+        </view>
+        <view>
+          <text class="rule-num">6</text>
+          <text class="rule-font">最后一场获胜队奖金<text class="num">5000</text>元。</text>
+        </view>
+      </view>
+    </view>
+    <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="margin-bottom:50px;">领取奖励 </button> -->
+    <view class="btn" bindtap="goToInvitePage">
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>{{teamData.id?'我的队伍':'我要做队长'}}</text>
+    </view>
+  </view>
+  <!-- 排名 -->
+  <view class="ranking" >
+    <view class='ranking-title'>
+    <view class="one-ranking {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab" wx:if="{{lasthuodong.changci == undefined}}">第0场比赛名次</view>
+      <view class="one-ranking {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab" wx:else>第{{lasthuodong.changci}}场比赛名次</view>
+      <view class="history {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">历史记录</view>
+    </view>
+    <view class="table {{currentTab == 0 ? 'show':'hide'}}">
+      <view class='table-content '>
+        <view class="tr">
+          <view class="th">队名</view>
+          <view class="th">成绩</view>
+          <view class="th ">奖金</view>
+        </view>
+        <block wx:if="{{list.length > 0}}">
+          <view class="tr" wx:for="{{list}}" wx:key="index">
+            <view class="td td-first">
+              <image wx:if="{{item.rank === 1}}" class="icon-gold" src="https://img.aworld.cn/icon_gold_medal.png"></image>
+              <image wx:elif="{{item.rank === 2}}" class="icon-gold" src="https://img.aworld.cn/icon_silver_medal.png"></image>
+              <image wx:elif="{{item.rank === 3}}" class="icon-gold" src="https://img.aworld.cn/icon_bronze_medal.png"></image>
+              <image wx:else class="icon-gold" src="https://img.aworld.cn/icon_other.png"></image>
+              <text class="td-number">{{item.rank}}</text>
+              <text class="td-name">{{item.title}}</text>
+            </view>
+            <view class="td">{{item.number}}m</view>
+            <view class="td">{{item.money}}</view>
+          </view>
+        </block>
+        <view class="no_record" wx:else>
+          <image src="https://img.aworld.cn/def_no_record.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="table {{currentTab == 1 ? 'show':'hide'}}">
+      <view class='table-content'>
+        <view class="tr">
+          <view class="th">队名</view>
+          <view class="th">成绩</view>
+          <view class="th ">奖金</view>
+        </view>
+        <block wx:if="{{allList.length > 0}}">
+          <view class="table-box" wx:for="{{allList}}" wx:key="{{index}}">
+            <view class="table-title" >· 第{{item.changci}}场比赛名次 ·</view>
+            <block wx:if="{{item.children.length>0}}">
+              <view class="tr" wx:for="{{item.children}}" wx:key="index">
+                <view class="td td-first">
+                  <image wx:if="{{item.rank === 1}}" class="icon-gold" src="https://img.aworld.cn/icon_gold_medal.png"></image>
+                  <image wx:elif="{{item.rank === 2}}" class="icon-gold" src="https://img.aworld.cn/icon_silver_medal.png"></image>
+                  <image wx:elif="{{item.rank === 3}}" class="icon-gold" src="https://img.aworld.cn/icon_bronze_medal.png"></image>
+                  <image wx:else class="icon-gold" src="https://img.aworld.cn/icon_other.png"></image>
+                  <text class="td-number">{{item.rank}}</text>
+                  <text class="td-name">{{item.title}}</text>
+                </view>
+                <view class="td">{{item.number}}m</view>
+                <view class="td">{{item.money}}</view>
+              </view>
+            </block>
+            <view class="no_record" wx:else>本场比赛无人参与</view>
+          </view>
+        </block>
+        <view class="no_record" wx:else>
+          <image src="https://img.aworld.cn/def_no_record.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='side-bg'>
+  <image src="https://img.aworld.cn/icon_floating_window.png"></image>
+  <view class="side">
+    <button type="button" bindtap="activeclick">
+      <image src="https://img.aworld.cn/hot.png"></image>
+      活动攻略
+    </button>
+    <view class='hr'></view>
+    <button type="button" bindtap="receiveclick">
+      领取奖励
+    </button>
+  </view>
+</view>
+<!-- 遮罩 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<!-- 点击领取奖励弹框 -->
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <image class="modal-bg modal-showModal" src="../../images/img_pop_up_windows.png"></image>
+  <view class="modal-title showModal-title">
+    领取奖励</view>
+  <view class="modal-content showModal-content">
+    <view>
+      <text class="modal-my">团队奖金：</text>
+      <text class="modal-money" >{{jiangjin.teamMoney }}元</text>
+    </view>
+    <view>
+      <text class="modal-my">个人奖金：</text>
+      <text class="modal-money"  >{{jiangjin.userMoney }}元</text>
+    </view>
+    <view class="modal-info">奖金仅限平台内使用（无门槛），请前往APP-优惠券处查看。</view>
+  </view>
+  <view class="modal-footer modal-footer-btn">
+    <image class="modal-showModal-btn" src="https://img.aworld.cn/btn.png"></image>
+    <button open-type="contact" bindcontact="handleContact">立即下载</button>
+  </view>
+
+</view>
+<!-- 登录弹框 -->
+<!-- <view class="modal-mask"  catchtouchmove="preventTouchMove" wx:if="{{showLogin &&!hasUserInfo && canIUse}}"></view> -->
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showLogin &&!hasUserInfo && canIUse}}"></view>
+<!-- 登录弹框 -->
+<!-- <view class="modal-dialog dialog-login" wx:if="{{showLogin &&!hasUserInfo && canIUse}}" > -->
+<view class="modal-dialog dialog-login" wx:if="{{showLogin &&!hasUserInfo && canIUse}}">
+  <image class="modal-bg" src="../../images/img_pop_up_windows.png"></image>
+  <view class="modal-title">龙舟挑战赛</view>
+  <view class="modal-content">
+    <view class="brg green">获取用户授权信息</view>
+    <view class="brg {{loginActive===2?'green':'gray'}}">获取用户手机号码</view>
+  </view>
+  <view class="modal-footer">
+    <image src="https://img.aworld.cn/btn.png"></image>
+    <button open-type="getUserInfo" bindgetuserinfo='getUserInfo' wx:if="{{loginActive===1}}">授权用户信息</button>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginActive===2}}">授权手机号码</button>
+  </view>
+</view>

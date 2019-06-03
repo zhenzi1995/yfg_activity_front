@@ -1,0 +1,196 @@
+.container {
+  background: #102a28;
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-bg {
+  width: 100%;
+  height: 600rpx;
+}
+
+.content-bg image {
+  width: 100%;
+  height: 600rpx;
+}
+
+.header {
+  position: absolute;
+  top: 50rpx;
+  text-align: center;
+  width: 100%;
+}
+
+.header .time image {
+  width: 127rpx;
+  position: relative;
+  height: 80rpx;
+  margin-top: 34rpx;
+}
+
+.header .time image.spot {
+  width: 10rpx;
+  height: 34rpx;
+  top: -8rpx;
+  margin: 15rpx;
+}
+
+.header .time image text {
+  position: absolute;
+  top: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  letter-spacing: 30rpx;
+  left: 15rpx;
+  color: #3a250f;
+  font-size: 60rpx;
+}
+
+.header .time {
+  font-size: 30rpx;
+  color: #e4f1e9;
+  margin-bottom: 60rpx;
+  width: 100%;
+}
+
+.time-top {
+  font-size: 48rpx;
+  color: #e0c3a3;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 38rpx;
+  width: 100%;
+}
+
+.head image {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 4rpx solid #a98a69;
+}
+
+.name text, .name input {
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.incite-img {
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20rpx;
+}
+
+.incite-img view {
+  float: left;
+  margin-right: 12rpx;
+}
+
+.incite-img view:last-child {
+  margin-right: 0;
+}
+
+.incite-img view image {
+  width: 117rpx;
+  height: 117rpx;
+  border: 4rpx solid #a98a69;
+  border-radius: 20rpx;
+  background: #fff;
+  overflow: hidden;
+}
+
+.btn {
+  overflow: hidden;
+  width: 80%;
+  margin-top: 20rpx;
+}
+.name {
+  background: rgba(255, 255, 255, 1);
+  border: 4rpx solid rgba(169, 138, 105, 1);
+  border-radius: 20rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  font-size: 36rpx;
+}
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+.surebtn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  color:#fff;
+  background: rgba(169, 138, 105, 1);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  width: 160rpx;
+}
+
+.name text, .name input {
+  color: #927557;
+  text-align: left;
+  font-size: 36rpx;
+}
+.inputwidth {
+  float: left;
+  padding-left: 20rpx;
+}
+.surename{
+  float: left;
+}
+
+.namelist{
+  font-size: 48rpx;
+  color: #D7B997;
+  width: 100%;
+}
+
+.incite-info {
+  color: #d7b997;
+  font-size: 36rpx;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 42rpx;
+  margin-bottom: 50rpx;
+}
+
+.incite-info text {
+  color: #fff;
+}
+
+.btn button {
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.btn button image {
+  height: 106rpx;
+  line-height: 106rpx;
+  width: 376rpx;
+}
+
+.btn button text {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  color: #3A250F;
+  left: 0;
+  font-size: 36rpx;
+  font-weight: bold;
+}

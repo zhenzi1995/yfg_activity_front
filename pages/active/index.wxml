@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="content-bg">
+    <image src="https://img.aworld.cn/duanwubanner.png"></image>
+  </view>
+  <view class="header">
+    <view class="time">
+      <view class="time-top">
+        活动攻略
+      </view>
+      <view class="accelerate">
+        <view class="title">粽子（加速器）</view>
+        <view class='content'>使用粽子比赛中划船速度加倍，每个粽子有效加速时间为10秒，粽子可连续使用。</view>
+      </view>
+      <view class="obtain">
+        <view class="title">获取方法</view>
+        <view class='content'>
+          <view>
+            <view class='content-title'>邀请</view>每邀请1人参加比赛就可获得1个粽子。</view>
+          <view>
+            <view class='content-title'>
+              <text class="lf">关注</text>
+              <button class="rf" open-type="contact" bindcontact="handleContact">去关注</button>
+              <!-- <text >去关注</text> -->
+            </view>首次关注艺方购公众号可得2个粽子。
+
+          </view>
+          <view>
+            <view class='content-title'>
+              <text class="lf">购物</text>
+              <button class="rf" open-type="contact" bindcontact="handleContact">去完成</button>
+              <!-- <text class="rf">去完成</text> -->
+            </view>活动期内用户在艺方购APP完成首单或任意1单拍品/商品付款成功即可获得5个粽子。
+
+          </view>
+        </view>
+        <view class="myaccelerator">【你的粽子：<text>{{count}}</text> 个】</view>
+        <view class="btn">
+          <button type="button" bindtap="invite">
+            <image src="https://img.aworld.cn/btn.png"></image>
+            <text>邀请好友领取粽子</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>

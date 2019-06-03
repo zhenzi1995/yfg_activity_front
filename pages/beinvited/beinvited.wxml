@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="content-bg">
+    <image src="https://img.aworld.cn/duanwubanner.png"></image>
+  </view>
+  <view class="header">
+    <view class="time">
+      <view class="time-top">
+        倒计时
+      </view>
+      <block wx:if="{{countDownDay}}">
+        <image src="https://img.aworld.cn/img_time.png">
+          <text>{{countDownDay<10?('0'+countDownDay):countDownDay}}</text>
+        </image>
+        <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      </block>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownHour<10?('0'+countDownHour):countDownHour}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownMinute<10?('0'+countDownMinute):countDownMinute}}</text>
+      </image>
+      <image class="spot" src="https://img.aworld.cn/img_time_two.png"></image>
+      <image src="https://img.aworld.cn/img_time.png">
+        <text>{{countDownSecond<10?('0'+countDownSecond):countDownSecond}}</text>
+      </image>
+    </view>
+    <view class="head">
+      <image src="{{headimg}}"></image>
+    </view>
+    
+    <view class="namelist" >{{teamData.title}}</view>
+  </view>
+  <view class="incite-img">
+    <view wx:for="{{teamData.users}}" wx:key="index">
+      <image src="{{item.headimgurl}}"></image>
+    </view>
+    <view wx:for="{{5-teamData.users.length}}" wx:key="{{index}}">
+      <image></image>
+    </view>
+  </view>
+  <view class="incite-info">
+    <view>龙舟赛需要5人组成一支队伍</view>
+    (
+    <text>{{teamData.users.length || 0}}</text>/5)
+  </view>
+
+  <view class="btn">
+    <button type="button" bindtap="goHome">
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>返回首页</text>
+    </button>
+    <button type="button" bindtap='createPoster'>
+      <image src="https://img.aworld.cn/btn.png"></image>
+      <text>分享活动</text>
+    </button>
+  </view>
+</view>
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showLogin  }}"></view>
+<!-- 登录弹框 -->
+<view class="modal-dialog dialog-login" wx:if="{{showLogin }}">
+  <!-- <view class="modal-dialog dialog-login" wx:if="{{showLogin }}"> -->
+  <image class="modal-bg" src="../../images/img_pop_up_windows.png"></image>
+  <view class="modal-title">龙舟挑战赛</view>
+  <view class="modal-content">
+    <view class="brg green">获取用户授权信息</view>
+    <view class="brg {{loginActive===2?'green':'gray'}}">获取用户手机号码</view>
+  </view>
+  <view class="modal-footer">
+    <image src="https://img.aworld.cn/btn.png"></image>
+    <button open-type="getUserInfo" bindgetuserinfo='getUserInfo' wx:if="{{loginActive===1}}">授权用户信息</button>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginActive===2}}">授权手机号码</button>
+  </view>
+</view>

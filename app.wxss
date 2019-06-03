@@ -1,0 +1,34 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+} 
+button:after {
+  background: none;
+  border: none;
+}
+button:active {
+  background: none;
+  border: none;
+}
+button:visited {
+  background: none;
+  border: none;
+}
+
+button:link {
+  background: none;
+  border: none;
+}
+
+button:hover {
+  background: none;
+  border: none;
+}

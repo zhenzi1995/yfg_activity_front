@@ -1,0 +1,109 @@
+<!-- 需要一个顶层元素，因为用到相对宽高 -->
+<view class="z-game">
+  <!-- 背景 -->
+  <!-- 船 -->
+  <view class="marquee container canvas">
+    <view animation="{{animationData}}">
+      <image mode="scaleToFill" class="content" src="https://img.aworld.cn/game_bg.png"></image>
+      <image mode="scaleToFill" class="content" src="https://img.aworld.cn/game_bg.png"></image>
+    </view>
+  </view>
+  <view class="shiptip">
+    <view class="shiplist" style="bottom:{{botstyle}}px">
+      <view class="shipname">
+        <image src="{{shiphead}}"></image>
+        <text>第{{totlename}}名</text>
+      </view>
+      <image class="ship" src="https://img.aworld.cn/game_img_dragon_boat.png"></image>
+    </view>
+  </view>
+  <!-- 风暴 -->
+  <view class="storm {{showView?'show':'hide'}}">
+    <image src="https://img.aworld.cn/img_fierce_wind.png"></image>
+    <view>狂风
+      <text>{{stormtime}}S</text>来袭，注意躲避！</view>
+  </view>
+  <!-- 列表 -->
+  <view class="list">
+    <view class="info" wx:for="{{rankList}}" wx:key="index">
+      <view class="ranking">{{index+1}}</view>
+      <view class="flex1 ct">
+        <view class="__t">{{item.title}}</view>
+        <view class="__number">{{item.number}}米</view>
+      </view>
+    </view>
+    <view class="timer">{{time}} s</view>
+  </view>
+  <!-- 自己的米数和队友的米数 -->
+  <view class="countdown">{{total}}米
+    <view>您的贡献：{{owntotal}}米</view>
+  </view>
+  <!-- 围观人数 -->
+  <view class="onlookers">
+    [总共<text>{{randSum.sum}}</text>人围观]
+  </view>
+  <!-- 倒计时 -->
+  <!-- 按钮 -->
+  <view class="btns">
+    <view class="text-center">
+      <view class="flt">
+        <image src="https://img.aworld.cn/btn_elude.png">
+          <button hover-class="none" class="fltbtn" bindtap="storm">躲开</button>
+        </image>
+      </view>
+      <view class="stratbtn">
+        <image src="https://img.aworld.cn/btn_rowing.png">
+          <button hover-class="none" class="fltbtn" id="flyButton" type="primary" bindtap="add">
+            {{huodong.status===0?'未开始':''}}
+            <block wx:if="{{huodong.status===1}}">
+              {{owntotal>0?'划船':'开始游戏'}} 
+            </block>
+            {{huodong.status===2?'已结束':''}}
+          </button>
+        </image>
+      </view>
+    </view>
+    <view class="acceleratorbtn">
+      <image src="https://img.aworld.cn/game_btn_accelerator.png">
+        <button hover-class="none" disabled ="{{disableds}}" class="accelerator" bindtap="accelerator">
+          <block wx:if="{{isJiasu}}">
+            加速器 ({{delayTime}})
+          </block>
+          <block wx:else>
+           加速器 X {{acceleratorCount}}
+          </block>
+        </button>
+      </image>
+    </view>
+  </view>
+</view>
+<!-- 遮罩 -->
+<view class="modal-mask"  catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<!-- 点击领取奖励弹框 -->
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <image class="modal-bg" src="https://img.aworld.cn/pops_up_bg.png"></image>
+  <view class="modal-content">
+    <view class="modal-t">
+      赢得第
+      <text class="modal-money">{{totlename}}</text>名冲刺
+      <text class="modal-money">{{total}}</text>米
+    </view>
+    <view wx:if="{{ totlename >20 }}">
+      <view class="modal-reward">获得团队奖励</view>
+      <view class="modal-new">新人注册礼包</view>
+      <view class="modal-look">（请前往APP查看）</view>
+    </view>
+    <view wx:else>
+      <view class="modal-my">
+        获得团队奖励
+      </view>
+      <view class="team-moner">
+        <text class="modal-money">{{teamMoney}}元</text>(每人{{userMoney}}元)
+      </view>
+    </view>
+  </view>
+  <view class="modal-footer" bindtap="goToInvitePage">
+    <image src="https://img.aworld.cn/btn_rowing.png"></image>
+    <text>备战下一场</text>
+  </view>
+</view>
